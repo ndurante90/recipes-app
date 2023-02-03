@@ -1,0 +1,21 @@
+.recipe-list-header, .recipe-row{
+    display: flex;
+}
+
+.recipe-list-header{
+    background-color: rgb(132, 173, 234);
+    font-weight: bold;
+    padding: 10px;
+}
+
+.recipes-list {
+    width: 50%;
+}
+
+.recipes-list > div > div{
+    flex: 1;
+}
+
+.recipes-list > div > div:nth-child(3){
+    flex: 2;
+}
