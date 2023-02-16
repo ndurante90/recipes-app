@@ -1,0 +1,13 @@
+<nav class="navbar">
+    <div class="mobile-btn">
+        <div (click)="toggleClass()">Open</div>
+    </div>
+    <ul [class]="class">
+        <li>
+            <a routerLink="list">List</a>
+        </li>
+        <li>
+            <a routerLink="add">Add recipe</a>
+        </li>
+    </ul>
+</nav>

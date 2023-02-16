@@ -1,0 +1,46 @@
+.navbar {
+    height: 100%;
+    background-color: lightgray;
+}
+
+.navbar ul{
+    list-style-type: none;
+    height: 100%;
+}
+
+.navbar ul > li > a{
+    display: block;
+    padding: 25px;
+    text-align: center;
+    background-color: darkgray;
+    color: black;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
+.navbar ul > li > a:hover{
+    background-color: black;
+    color: white;
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: auto;
+        background-color: transparent;
+    }
+
+    ul{
+        opacity: 0;
+    }
+
+    ul.visible{
+        opacity: 1;
+    }
+
+
+}
