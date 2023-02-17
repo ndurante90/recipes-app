@@ -1,1 +1,13 @@
-<p>add-recipe works!</p>
+<form [formGroup] = "form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+        <mat-label>Name:</mat-label>
+        <input matInput type="text" id="recipe_name" name="recipe_name" placeholder="Name" value="Sushi" formControlName="recipe_name">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+        <mat-label>Descrizione:</mat-label>
+        <textarea matInput id="recipe_description" name="recipe_description" placeholder="Enter text" formControlName="recipe_description" ></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary">Primary</button>
+</form>
