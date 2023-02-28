@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import RecipeCategory from 'src/app/model/recipe-category';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-recipe',
@@ -9,11 +11,18 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class AddRecipeComponent {
 
   form: FormGroup;
+  categories: RecipeCategory[] | undefined;
 
   constructor() {
+
+    this.categories = <RecipeCategory[]>[
+      { value: 0, description: 'Street Food' },
+      { value: 1, description: 'Breakfast' }
+    ];
     this.form = new FormGroup({
-      recipe_name : new FormControl(''),
-      recipe_description: new FormControl('')
+      recipe_name : new FormControl('', Validators.required),
+      recipe_category: new FormControl('', Validators.required),
+      recipe_description: new FormControl('', Validators.maxLength(100))
     });
 
     Object.keys(this.form.controls).forEach(
@@ -24,6 +33,8 @@ export class AddRecipeComponent {
       }
     );
   }
+
+  get recipeName() { return this.form.get('recipe_name'); }
 
   onSubmit() {
     alert(JSON.stringify(this.form.value));
