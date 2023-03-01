@@ -3,8 +3,7 @@
         <mat-label>Name:</mat-label>
         <input matInput type="text" id="recipe_name" name="recipe_name" placeholder="Name" value="Sushi" formControlName="recipe_name">
     </mat-form-field>
-    {{form}}
-    <span *ngIf="recipeName?.invalid && (recipeName?.dirty)">*Campo richiesto</span>
+    <span *ngIf="(formSubmitted || recipeName?.dirty) && recipeName?.invalid">*Campo richiesto</span>
     <br>
     <mat-form-field appearance="fill">
         <mat-label>Categoria:</mat-label>
@@ -14,12 +13,13 @@
           </mat-option>
         </mat-select>
     </mat-form-field>
+    <span *ngIf="(formSubmitted || recipeCategory?.dirty) && recipeCategory?.invalid">*Campo richiesto</span>
     <br>
     <mat-form-field class="example-full-width">
         <mat-label>Descrizione:</mat-label>
         <textarea matInput id="recipe_description" name="recipe_description" placeholder="Enter text" formControlName="recipe_description" ></textarea>
     </mat-form-field>
-    <span *ngIf="form.dirty && !form.controls['recipe_description'].valid">*La lunghezza deve essere massimo di 100 caratteri!</span>
+    <span *ngIf="!form.controls['recipe_description'].valid">*La lunghezza deve essere massimo di 100 caratteri!</span>
     <br>
     <button mat-raised-button color="primary">Send</button>
 </form>

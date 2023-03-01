@@ -12,6 +12,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from  '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    CommonModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

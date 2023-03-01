@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import RecipeCategory from 'src/app/model/recipe-category';
 import { Validators } from '@angular/forms';
+import { RecipeCategoryService } from 'src/app/services/recipe-category.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -12,13 +13,12 @@ export class AddRecipeComponent {
 
   form: FormGroup;
   categories: RecipeCategory[] | undefined;
+  formSubmitted: boolean = false;
 
-  constructor() {
+  constructor(private recipeCategoryService: RecipeCategoryService) {
 
-    this.categories = <RecipeCategory[]>[
-      { value: 0, description: 'Street Food' },
-      { value: 1, description: 'Breakfast' }
-    ];
+    this.categories = this.recipeCategoryService.getRecipeCategories();
+    
     this.form = new FormGroup({
       recipe_name : new FormControl('', Validators.required),
       recipe_category: new FormControl('', Validators.required),
@@ -36,7 +36,14 @@ export class AddRecipeComponent {
 
   get recipeName() { return this.form.get('recipe_name'); }
 
+  get recipeCategory() { return this.form.get('recipe_category'); }
+
   onSubmit() {
-    alert(JSON.stringify(this.form.value));
+    this.formSubmitted = true;
+
+    if(this.form.valid){
+      //make API post call
+      alert(JSON.stringify(this.form.value));
+    }
   }
 }
