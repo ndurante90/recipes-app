@@ -1,0 +1,18 @@
+[
+  {
+     "id": "1",
+     "name": "Pulled Pork",
+     "category": "Street Food",
+     "description": "Hamburger with beef, tomato",
+     "creationDate": "2023-08-12",
+     "difficult": "2"
+  },
+  {
+      "id": "2",
+      "name": "Orange Juice",
+      "category": "Breakfast",
+      "description": "An Orange Juice rich in vitamin C",
+      "creationDate": "",
+      "difficult": "1"
+  }
+]

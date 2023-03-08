@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from  '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
+    HttpClientModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
