@@ -12,7 +12,7 @@ export class RecipesService {
   }
 
   public getRecipes(): Observable<Recipe[]> {
-    return this.httpService.get<Recipe[]>('recipes.json');
+    return this.httpService.get<Recipe[]>('/data/recipes.json');
     /*return [
       {
          id: '1',
