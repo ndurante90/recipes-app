@@ -18,6 +18,13 @@ export class RecipesListComponent implements OnInit {
     this.recipesService.getRecipes().subscribe(
       (res) => this.recipes = res
     );
+  }
+
+  delete(id: string): void {
+    this.recipesService.deleteRecipe(id).subscribe(
+      (res) => {}
+    );
+
 
   }
 }

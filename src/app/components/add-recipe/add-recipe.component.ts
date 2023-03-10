@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import RecipeCategory from 'src/app/model/recipe-category';
 import { Validators } from '@angular/forms';
 import { RecipeCategoryService } from 'src/app/services/recipe-category.service';
+import { RecipesService } from 'src/app/services/recipes.service';
+import { Recipe } from 'src/app/model/recipes';
 
 @Component({
   selector: 'app-add-recipe',
@@ -15,14 +17,15 @@ export class AddRecipeComponent {
   categories: RecipeCategory[] | undefined;
   formSubmitted: boolean = false;
 
-  constructor(private recipeCategoryService: RecipeCategoryService) {
+  constructor(private recipesService: RecipesService, private recipeCategoryService: RecipeCategoryService) {
 
     this.categories = this.recipeCategoryService.getRecipeCategories();
-    
+
     this.form = new FormGroup({
-      recipe_name : new FormControl('', Validators.required),
-      recipe_category: new FormControl('', Validators.required),
-      recipe_description: new FormControl('', Validators.maxLength(100))
+      name : new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.maxLength(100)),
+      difficult: new FormControl('')
     });
 
     Object.keys(this.form.controls).forEach(
@@ -34,9 +37,9 @@ export class AddRecipeComponent {
     );
   }
 
-  get recipeName() { return this.form.get('recipe_name'); }
+  get Name() { return this.form.get('name'); }
 
-  get recipeCategory() { return this.form.get('recipe_category'); }
+  get Category() { return this.form.get('category'); }
 
   onSubmit() {
     this.formSubmitted = true;
@@ -44,6 +47,11 @@ export class AddRecipeComponent {
     if(this.form.valid){
       //make API post call
       alert(JSON.stringify(this.form.value));
+      const newRecipe: Recipe =  Object.assign({ creationDate: new Date() }, this.form.value);
+
+      this.recipesService.postRecipe(newRecipe).subscribe(
+        (res) => console.log(res)
+      );
     }
   }
 }

@@ -8,27 +8,21 @@ import { Recipe } from '../model/recipes';
 })
 export class RecipesService {
 
+  baseUrl: string = 'http://localhost:3000/recipes';
+
   constructor(private httpService: HttpClient) {
   }
 
   public getRecipes(): Observable<Recipe[]> {
-    return this.httpService.get<Recipe[]>('/data/recipes.json');
-    /*return [
-      {
-         id: '1',
-         name: 'Pulled Pork',
-         category: 'Street Food',
-         description: 'Hamburger with beef, tomato',
-         creationDate: new Date(),
-         difficult: 2
-      },
-      {
-          id: '2',
-          name: 'Orange Juice',
-          category: 'Breakfast',
-          description: 'An Orange Juice rich in vitamin C',
-          creationDate: new Date(),
-          difficult: 1
-      }];*/
+    return this.httpService.get<Recipe[]>(this.baseUrl);
   }
+
+  public postRecipe(recipe: Recipe): Observable<any> {
+    return this.httpService.post(this.baseUrl, recipe);
+  }
+
+  public deleteRecipe(id: string): Observable<any> {
+    return this.httpService.delete(`${this.baseUrl}/${id}`);
+  }
+
 }

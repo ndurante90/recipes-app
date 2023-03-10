@@ -6,6 +6,7 @@
         <div>Description</div>
         <div>Creation Date</div>
         <div>Difficult</div>
+        <div>Actions</div>
     </div>
     <div class="recipe-row" *ngFor="let recipe of recipes">
        <div>{{recipe.name}}</div>
@@ -13,5 +14,8 @@
        <div>{{recipe.description}}</div>
        <div>{{recipe.creationDate}}</div>
        <div>{{recipe.difficult}}</div>
+       <div>
+          <a (click)="this.delete(recipe.id)" style="width: 20px;display: block;background: yellow;height: 20px;"><i class="fa fa-trash"></i></a>
+       </div>
     </div>
 </div>

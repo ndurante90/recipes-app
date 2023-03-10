@@ -1,18 +1,33 @@
-[
-  {
-     "id": "1",
-     "name": "Pulled Pork",
-     "category": "Street Food",
-     "description": "Hamburger with beef, tomato",
-     "creationDate": "2023-08-12",
-     "difficult": "2"
-  },
-  {
+{
+  "recipes": [
+    {
+      "id": "1",
+      "name": "Pulled Pork",
+      "category": 0,
+      "description": "Hamburger with beef, tomato",
+      "creationDate": "2023-08-12",
+      "difficult": "2"
+    },
+    {
       "id": "2",
       "name": "Orange Juice",
-      "category": "Breakfast",
+      "category": 1,
       "description": "An Orange Juice rich in vitamin C",
       "creationDate": "",
       "difficult": "1"
-  }
-]
+    },
+    {
+      "name": "Pizza",
+      "category": 0,
+      "description": "prova",
+      "id": "d02AVfk"
+    },
+    {
+      "creationDate": "2023-03-10T16:01:14.862Z",
+      "name": "TEST",
+      "category": 1,
+      "description": "",
+      "id": "BisRlxB"
+    }
+  ]
+}
