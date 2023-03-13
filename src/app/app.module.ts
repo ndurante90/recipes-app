@@ -14,13 +14,16 @@ import { ReactiveFormsModule } from  '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesListComponent,
     NavbarComponent,
-    AddRecipeComponent
+    AddRecipeComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -28,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,

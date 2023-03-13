@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.recipe-row{
+  min-height: 50px;
+}
+
 .recipe-list-header{
     background-color: rgb(132, 173, 234);
     font-weight: bold;

@@ -7,6 +7,10 @@
    padding: 0;
 }
 
+a{
+  cursor: pointer;
+}
+
 body{
     height: 100vh;
 }
@@ -20,6 +24,12 @@ body{
 {
     flex: 1;
     height: inherit;
+}
+
+.delete-btn{
+  background: yellow;
+  padding: 10px;
+  display: inline-block;
 }
 
 @media screen and (max-width: 768px) {
