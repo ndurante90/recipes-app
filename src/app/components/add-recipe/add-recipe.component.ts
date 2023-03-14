@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import RecipeCategory from 'src/app/model/recipe-category';
 import { Validators } from '@angular/forms';
 import { RecipeCategoryService } from 'src/app/services/recipe-category.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { Recipe } from 'src/app/model/recipes';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css']
 })
+
 export class AddRecipeComponent {
 
   form: FormGroup;

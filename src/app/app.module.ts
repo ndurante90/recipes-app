@@ -22,7 +22,6 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
     AppComponent,
     RecipesListComponent,
     NavbarComponent,
-    AddRecipeComponent,
     ConfirmationDialogComponent
   ],
   imports: [
