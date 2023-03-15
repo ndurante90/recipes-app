@@ -1,6 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog';
+import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { DialogActions, DialogData, DialogOptions } from '../model/dialog-data';
 import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
@@ -12,34 +13,32 @@ export class DialogsService {
 
   constructor(private dialog: MatDialog) { }
 
-  public openDialog(dynamicComponents$?: Observable<any>, options?: DialogOptions, actions?: DialogActions[]): MatDialogRef<ConfirmationDialogComponent, DialogData> {
+  public openDialog<T>(componentType?: ComponentType<T>, value?: any, actions?: DialogActions[]): MatDialogRef<ConfirmationDialogComponent> {
 
-    let dynamicContent: any = dynamicComponents$;
+    const config = new MatDialogConfig();
 
-    const dialogData: DialogData = { component$: dynamicContent, dialogOptions: options, dialogActions: actions  };
+    config.data = {};
 
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, { data: dialogData});
+    if(componentType){
+      config.data.componentType = componentType;
+    }
 
-    this.registerActions(dialogRef);
+    config.data.value = value;
+
+    config.data.actions = actions;
+
+    //const dialogData: DialogData<T> = { componentType: componentType, dialogOptions: options, dialogActions: actions  };
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, config);
 
     return dialogRef;
 
   }
 
 
-  public registerActions(dialogRef: MatDialogRef<ConfirmationDialogComponent, DialogData>) {
-    /*dialogRef.afterClosed().subscribe(
-      data => {
-        console.log('here');
-        if(data. == 'delete'){
-           this.deleteItem(id);
-        }
-      }
-    )*/
-  }
 
 
-  public closeDialog(dialogRef: MatDialogRef<ConfirmationDialogComponent, DialogData>) {
+  public closeDialog<T>(dialogRef: MatDialogRef<ConfirmationDialogComponent, DialogData<T>>) {
      dialogRef.close();
   }
 

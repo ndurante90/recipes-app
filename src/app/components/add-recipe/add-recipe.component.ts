@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import RecipeCategory from 'src/app/model/recipe-category';
 import { Validators } from '@angular/forms';
@@ -17,7 +17,11 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrls: ['./add-recipe.component.css']
 })
 
-export class AddRecipeComponent {
+export class AddRecipeComponent implements OnInit {
+
+  //this might be inserted in a superclass<T>, so then I can extend each
+  //class and I have the same input "value"
+  @Input() value: Recipe | undefined;
 
   form: FormGroup;
   categories: RecipeCategory[] | undefined;
@@ -41,6 +45,10 @@ export class AddRecipeComponent {
         )
       }
     );
+  }
+
+  ngOnInit(): void {
+     console.log(this.value);
   }
 
   get Name() { return this.form.get('name'); }

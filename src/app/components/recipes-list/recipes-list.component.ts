@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { from, Observable, of } from 'rxjs';
+import { DialogActions } from 'src/app/model/dialog-data';
 import { DialogsService } from 'src/app/services/dialogs.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { AddRecipeComponent } from '../../../app/components/add-recipe/add-recipe.component';
 import { Recipe } from '../../model/recipes';
 
 @Component({
@@ -13,6 +15,8 @@ import { Recipe } from '../../model/recipes';
 })
 export class RecipesListComponent implements OnInit {
   recipes : Recipe[] | undefined;
+
+
   private editRecipe$
   = from(import('../../../app/components/add-recipe/add-recipe.component').then(component => component.AddRecipeComponent));
 
@@ -26,7 +30,16 @@ export class RecipesListComponent implements OnInit {
   }
 
   openDeleteDialog(id: string): void {
-    const dialogRef = this.dialogsService.openDialog(undefined,
+    const actions: DialogActions[] = [
+      { label: 'Modifica', action: () => { return this.deleteItem(id) }, closeDialog: true }
+    ];
+
+    const dialogRef = this.dialogsService.openDialog(undefined, { content: "Are you sure you want to delete this item?" }, actions);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.recipes = this.recipes?.filter(recipe => recipe.id != id);
+    });
+    /*const dialogRef = this.dialogsService.openDialog(undefined,
                        { content: 'Are you sure you want to delete this item?'},
                        [
                           {
@@ -42,12 +55,14 @@ export class RecipesListComponent implements OnInit {
       data => {
          this.recipes = this.recipes?.filter(recipe => recipe.id != id);
       }
-    );
+    );*/
 
   }
 
-  editRecipe(id: string){
-    const dialogRef = this.dialogsService.openDialog(this.editRecipe$,
+  editRecipe(id: string) {
+    const componentType = AddRecipeComponent;
+    this.dialogsService.openDialog(componentType, { name: "prova" } as Recipe);
+    /*const dialogRef = this.dialogsService.openDialog(this.editRecipe$,
       undefined,
       [
        {
@@ -58,7 +73,7 @@ export class RecipesListComponent implements OnInit {
          closeDialog: true
         }
      ]
-      );
+      );*/
   }
 
   deleteItem(id: string): Observable<any> {
