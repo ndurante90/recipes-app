@@ -26,5 +26,5 @@
       <input matInput type="text" id="difficult" name="difficult" placeholder="Difficult" formControlName="difficult">
     </mat-form-field>
     <br>
-    <button mat-raised-button color="primary">Send</button>
+    <button mat-raised-button color="primary" *ngIf="this.fromDialog">Send</button>
 </form>

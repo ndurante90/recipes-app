@@ -25,6 +25,8 @@ export class DialogsService {
 
     config.data.value = value;
 
+    config.data.fromDialog = true;
+
     config.data.actions = actions;
 
     //const dialogData: DialogData<T> = { componentType: componentType, dialogOptions: options, dialogActions: actions  };

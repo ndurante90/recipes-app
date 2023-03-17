@@ -8,6 +8,7 @@ import { Recipe } from 'src/app/model/recipes';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { GenericEditor } from 'src/app/model/generic-editor';
 
 @Component({
   standalone: true,
@@ -17,11 +18,11 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrls: ['./add-recipe.component.css']
 })
 
-export class AddRecipeComponent implements OnInit {
+export class AddRecipeComponent extends GenericEditor<AddRecipeComponent> implements OnInit {
 
   //this might be inserted in a superclass<T>, so then I can extend each
   //class and I have the same input "value"
-  @Input() value: Recipe | undefined;
+  //@Input() value: Recipe | undefined;
 
   form: FormGroup;
   categories: RecipeCategory[] | undefined;
@@ -29,6 +30,7 @@ export class AddRecipeComponent implements OnInit {
 
   constructor(private recipesService: RecipesService, private recipeCategoryService: RecipeCategoryService) {
 
+    super();
     this.categories = this.recipeCategoryService.getRecipeCategories();
 
     this.form = new FormGroup({
@@ -67,7 +69,7 @@ export class AddRecipeComponent implements OnInit {
   onSubmit() {
     this.formSubmitted = true;
 
-    if(this.form.valid){
+    if(this.form.valid) {
       //make API post call
       alert(JSON.stringify(this.form.value));
       const newRecipe: Recipe =  Object.assign({ creationDate: new Date() }, this.form.value);
