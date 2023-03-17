@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Recipe } from '../model/recipes';
 
 @Injectable({
@@ -22,7 +22,8 @@ export class RecipesService {
   }
 
   public deleteRecipe(id: string): Observable<any> {
-    return this.httpService.delete(`${this.baseUrl}/${id}`);
+    //returns the id as response TO BE REMOVE WHEN I MAKE BACKEND
+    return this.httpService.delete<Recipe>(`${this.baseUrl}/${id}`).pipe(map((obj: Recipe) => id));
   }
 
 }

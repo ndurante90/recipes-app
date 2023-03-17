@@ -48,7 +48,16 @@ export class AddRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     console.log(this.value);
+     if(this.value){
+
+      this.form = new FormGroup({
+        name : new FormControl(this.value.name, Validators.required),
+        category: new FormControl(this.value.category, Validators.required) ,
+        description: new FormControl('', Validators.maxLength(100)),
+        difficult: new FormControl('')
+      });
+
+     }
   }
 
   get Name() { return this.form.get('name'); }

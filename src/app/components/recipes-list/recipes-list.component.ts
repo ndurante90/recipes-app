@@ -37,7 +37,11 @@ export class RecipesListComponent implements OnInit {
     const dialogRef = this.dialogsService.openDialog(undefined, { content: "Are you sure you want to delete this item?" }, actions);
 
     dialogRef.afterClosed().subscribe(result => {
-      this.recipes = this.recipes?.filter(recipe => recipe.id != id);
+      console.log(result);
+      if(result){
+        this.recipes = this.recipes?.filter(recipe => recipe.id != result);
+      }
+
     });
     /*const dialogRef = this.dialogsService.openDialog(undefined,
                        { content: 'Are you sure you want to delete this item?'},
@@ -59,9 +63,9 @@ export class RecipesListComponent implements OnInit {
 
   }
 
-  editRecipe(id: string) {
+  editRecipe(recipe: Recipe) {
     const componentType = AddRecipeComponent;
-    this.dialogsService.openDialog(componentType, { name: "prova" } as Recipe);
+    this.dialogsService.openDialog(componentType, recipe);
     /*const dialogRef = this.dialogsService.openDialog(this.editRecipe$,
       undefined,
       [

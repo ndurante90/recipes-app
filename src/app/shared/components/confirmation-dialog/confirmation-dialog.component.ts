@@ -41,7 +41,7 @@ export class ConfirmationDialogComponent implements OnInit  {
         alert('Operazione completata');
 
         if(dialogAction.closeDialog) {
-          this.dialog.close();
+          this.dialog.close(res);
         }
       },
       (err: any) => console.log(err)
