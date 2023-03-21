@@ -1,5 +1,10 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Recipe } from "./recipes";
+
+export enum Operation{
+  Add,
+  Edit
+}
 
 @Component({
   selector: 'app-add-recipe',
@@ -7,10 +12,17 @@ import { Recipe } from "./recipes";
   styles: []
 })
 
-export class GenericEditor<T>{
+export class GenericEditor<T> implements OnInit{
 
-  @Input() value: Recipe | undefined;
-  @Input() fromDialog: boolean = false;
+  @Input() value: T | undefined;
+  @Input() fromDialog: boolean = false; //remove
 
+  @Output() onOperationCompleted: EventEmitter<any> = new EventEmitter();
+
+  protected mode: Operation = Operation.Add;
+
+  ngOnInit(): void {
+    this.mode = this.value != undefined ? Operation.Edit : Operation.Add;
+  }
 }
 

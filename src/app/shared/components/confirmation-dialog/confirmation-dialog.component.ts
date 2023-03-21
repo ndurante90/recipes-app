@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Inject, Input, OnInit, Type, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, Inject, Input, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogActions, DialogData } from 'src/app/model/dialog-data';
 
@@ -29,7 +29,14 @@ export class ConfirmationDialogComponent implements OnInit  {
       //const componentFactory = this.resolver.resolveComponentFactory(this.componentType);
       const componentRef = this.viewContainerRef.createComponent(this.componentType);
       componentRef.instance.value = this.data.value;
+      componentRef.instance.fromDialog = true;
+      componentRef.instance.onOperationCompleted.subscribe((res: any) => {
+        console.log(res);
+        this.dialog.close(res);
+      })
     }
+
+
   }
 
   handleAction(dialogAction: DialogActions){

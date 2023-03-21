@@ -31,58 +31,37 @@ export class RecipesListComponent implements OnInit {
 
   openDeleteDialog(id: string): void {
     const actions: DialogActions[] = [
-      { label: 'Modifica', action: () => { return this.deleteItem(id) }, closeDialog: true }
+      { label: 'Elimina', action: () => { return this.deleteItem(id) }, closeDialog: true }
     ];
 
     const dialogRef = this.dialogsService.openDialog(undefined, { content: "Are you sure you want to delete this item?" }, actions);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if(result){
         this.recipes = this.recipes?.filter(recipe => recipe.id != result);
       }
-
     });
-    /*const dialogRef = this.dialogsService.openDialog(undefined,
-                       { content: 'Are you sure you want to delete this item?'},
-                       [
-                          {
-                             name: 'Delete',
-                             action: () => {
-                               return this.deleteItem(id)
-                             },
-                             closeDialog: true
-                          }
-                        ]
-                       );
-    dialogRef.afterClosed().subscribe(
-      data => {
-         this.recipes = this.recipes?.filter(recipe => recipe.id != id);
-      }
-    );*/
-
   }
 
   editRecipe(recipe: Recipe) {
     const componentType = AddRecipeComponent;
-    this.dialogsService.openDialog(componentType, recipe);
-    /*const dialogRef = this.dialogsService.openDialog(this.editRecipe$,
-      undefined,
-      [
-       {
-         name: 'Edit',
-         action: () => {
-           return null
-         },
-         closeDialog: true
-        }
-     ]
-      );*/
+
+    const dialogRef = this.dialogsService.openDialog(componentType, recipe);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.recipes = [this.recipes?.filter(recipe => recipe.id != result.id), result];
+      }
+    });
   }
 
   deleteItem(id: string): Observable<any> {
      return this.recipesService.deleteRecipe(id);
   }
+
+  updateItem(recipe: Recipe): Observable<object> {
+    return this.recipesService.updateRecipe(recipe);
+ }
 
 
 }

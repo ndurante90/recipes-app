@@ -8,7 +8,7 @@ import { Recipe } from 'src/app/model/recipes';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { GenericEditor } from 'src/app/model/generic-editor';
+import { Operation, GenericEditor } from 'src/app/model/generic-editor';
 
 @Component({
   standalone: true,
@@ -18,7 +18,7 @@ import { GenericEditor } from 'src/app/model/generic-editor';
   styleUrls: ['./add-recipe.component.css']
 })
 
-export class AddRecipeComponent extends GenericEditor<AddRecipeComponent> implements OnInit {
+export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit {
 
   //this might be inserted in a superclass<T>, so then I can extend each
   //class and I have the same input "value"
@@ -34,6 +34,7 @@ export class AddRecipeComponent extends GenericEditor<AddRecipeComponent> implem
     this.categories = this.recipeCategoryService.getRecipeCategories();
 
     this.form = new FormGroup({
+      id: new FormControl(''),
       name : new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
       description: new FormControl('', Validators.maxLength(100)),
@@ -49,10 +50,13 @@ export class AddRecipeComponent extends GenericEditor<AddRecipeComponent> implem
     );
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
+    console.log(this.mode);
      if(this.value){
 
       this.form = new FormGroup({
+        id : new FormControl(this.value.id),
         name : new FormControl(this.value.name, Validators.required),
         category: new FormControl(this.value.category, Validators.required) ,
         description: new FormControl('', Validators.maxLength(100)),
@@ -70,13 +74,27 @@ export class AddRecipeComponent extends GenericEditor<AddRecipeComponent> implem
     this.formSubmitted = true;
 
     if(this.form.valid) {
-      //make API post call
-      alert(JSON.stringify(this.form.value));
-      const newRecipe: Recipe =  Object.assign({ creationDate: new Date() }, this.form.value);
+      if(this.mode === Operation.Add){
+        //make API post call
+        alert(JSON.stringify(this.form.value));
+        const newRecipe: Recipe =  Object.assign({ creationDate: new Date() }, this.form.value);
 
-      this.recipesService.postRecipe(newRecipe).subscribe(
-        (res) => console.log(res)
-      );
+        this.recipesService.postRecipe(newRecipe).subscribe(
+           (res) => console.log(res)
+        );
+      }
+
+      if(this.mode === Operation.Edit){
+        const recipe: Recipe =  this.form.value;
+        this.recipesService.updateRecipe(recipe).subscribe(
+          (res) => {
+            console.log(res)
+            //if(this.fromDialog)
+            this.onOperationCompleted.emit(res);
+          }
+        );
+
+      }
     }
   }
 }

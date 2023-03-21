@@ -21,6 +21,10 @@ export class RecipesService {
     return this.httpService.post(this.baseUrl, recipe);
   }
 
+  public updateRecipe(recipe:Recipe): Observable<object> {
+    return this.httpService.patch(`${this.baseUrl}/${recipe.id}`, recipe);
+  }
+
   public deleteRecipe(id: string): Observable<any> {
     //returns the id as response TO BE REMOVE WHEN I MAKE BACKEND
     return this.httpService.delete<Recipe>(`${this.baseUrl}/${id}`).pipe(map((obj: Recipe) => id));

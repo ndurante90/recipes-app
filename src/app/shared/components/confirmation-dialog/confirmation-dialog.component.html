@@ -13,6 +13,6 @@
     {{data.dialogOptions?.content}}
   </div> -->
 </div>
-<mat-dialog-actions>
+<mat-dialog-actions *ngIf="data.actions">
   <button mat-button *ngFor="let action of data.actions" (click)="handleAction(action)">{{action.label}}</button>
 </mat-dialog-actions>
