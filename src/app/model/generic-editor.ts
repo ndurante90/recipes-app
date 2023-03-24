@@ -12,7 +12,7 @@ export enum Operation{
   styles: []
 })
 
-export class GenericEditor<T> implements OnInit{
+export abstract class GenericEditor<T> implements OnInit{
 
   @Input() value: T | undefined;
   @Input() fromDialog: boolean = false; //remove
@@ -24,5 +24,9 @@ export class GenericEditor<T> implements OnInit{
   ngOnInit(): void {
     this.mode = this.value != undefined ? Operation.Edit : Operation.Add;
   }
+
+  abstract add(item: T): void;
+
+  abstract edit(item: T): void;
 }
 

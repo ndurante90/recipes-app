@@ -4,11 +4,11 @@ import RecipeCategory from 'src/app/model/recipe-category';
 import { Validators } from '@angular/forms';
 import { RecipeCategoryService } from 'src/app/services/recipe-category.service';
 import { RecipesService } from 'src/app/services/recipes.service';
-import { Recipe } from 'src/app/model/recipes';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Operation, GenericEditor } from 'src/app/model/generic-editor';
+import { Recipe } from 'src/app/model/recipes';
 
 @Component({
   standalone: true,
@@ -78,23 +78,30 @@ export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit 
         //make API post call
         alert(JSON.stringify(this.form.value));
         const newRecipe: Recipe =  Object.assign({ creationDate: new Date() }, this.form.value);
-
-        this.recipesService.postRecipe(newRecipe).subscribe(
-           (res) => console.log(res)
-        );
+        this.add(newRecipe);
       }
 
       if(this.mode === Operation.Edit){
         const recipe: Recipe =  this.form.value;
-        this.recipesService.updateRecipe(recipe).subscribe(
-          (res) => {
-            console.log(res)
-            //if(this.fromDialog)
-            this.onOperationCompleted.emit(res);
-          }
-        );
-
+        this.edit(recipe);
       }
     }
   }
+
+  add(item: Recipe): void {
+    this.recipesService.postRecipe(item).subscribe(
+      (res) => console.log(res)
+   );
+  }
+
+  edit(item: Recipe): void {
+    this.recipesService.updateRecipe(item).subscribe(
+      (res) => {
+        console.log(res)
+        //if(this.fromDialog)
+        this.onOperationCompleted.emit(res);
+      }
+    );
+  }
+
 }

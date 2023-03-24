@@ -14,7 +14,7 @@ import { Recipe } from '../../model/recipes';
   styleUrls: ['./recipes-list.component.css']
 })
 export class RecipesListComponent implements OnInit {
-  recipes : Recipe[] | undefined;
+  recipes : Recipe[] = [];
 
 
   private editRecipe$
@@ -38,7 +38,7 @@ export class RecipesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.recipes = this.recipes?.filter(recipe => recipe.id != result);
+        this.recipes = this.recipes.filter(recipe => recipe.id != result);
       }
     });
   }
@@ -50,7 +50,8 @@ export class RecipesListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.recipes = [this.recipes?.filter(recipe => recipe.id != result.id), result];
+        let results = this.recipes.filter(recipe => recipe.id != result.id);
+        this.recipes = [...results, result];
       }
     });
   }
