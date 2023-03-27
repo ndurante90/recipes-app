@@ -12,8 +12,9 @@ Una ricetta è caratterizzata da:
 - lista ingredienti
 - descrizione procedimento
 - difficoltà
+- immagine
 
-Ogni utente avrà le sue ricette personali. Di conseguenza sarà necessario 
+Ogni utente avrà le sue ricette personali. Di conseguenza sarà necessario
 prevedere un sistema di registrazione utenti nel quale ogni utente avrà
 un certo "grado" di accesso (admin, user, superadmin). Necessario implementare
 sistema autenticazione.
@@ -22,7 +23,7 @@ sistema autenticazione.
 
 La funzione ha lo scopo di creare una nuova lista spesa contenente tutti gli ingredienti da comprare per
 realizzare le ricette inserite a sistema
-Data in input una (o più) ricette, l'app esamina gli ingredienti richiesti ad ogni ricetta e calcola 
+Data in input una (o più) ricette, l'app esamina gli ingredienti richiesti ad ogni ricetta e calcola
 le esatte quantità da comprare per ciascun ingrediente.
 La lista spesa è possibile stamparla, visualizzarla ecc..
 Ogni lista spesa è caratterizzata da:
@@ -33,7 +34,7 @@ Ogni lista spesa è caratterizzata da:
 Esiste un API esterna che mi estrae i prezzi dei prodotti in uno specifico supermercato? Se si potrei determinarmi
 l ingrediente più conveniente in quel supermarket e suggerirlo all utente nella lista spesa! (RISPARMIO)
 
-Ogni lista spesa una volta che tutti gli ingredienti vengono marcati  a mano (tick) dall utente che 
+Ogni lista spesa una volta che tutti gli ingredienti vengono marcati  a mano (tick) dall utente che
 usa l app, si può chiudere con un pulsante. In questo modo verrà eliminata e posta nello storico per eventuali
 analisi future di confronto prezzo spese.
 

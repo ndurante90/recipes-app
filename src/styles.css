@@ -32,6 +32,18 @@ body{
   display: inline-block;
 }
 
+.custom-dialog-panel{
+  min-width: 300px;
+  min-height: 300px;
+}
+
+.dialog-content{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+
+
 @media screen and (max-width: 768px) {
     .application{
         display: block;

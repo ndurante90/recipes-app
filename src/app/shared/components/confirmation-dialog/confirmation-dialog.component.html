@@ -1,18 +1,13 @@
-<h2 mat-dialog-title>TITLE</h2>
+<div class="content" style="text-align:center">
+  <h2 mat-dialog-title>{{data.title}}</h2>
 <div mat-dialog-content>
   <ng-container #container></ng-container>
   <ng-container *ngIf="data.value.content as content">
       {{content}}
   </ng-container>
-  <!-- <div *ngIf="data.component$!=undefined">
-      <ng-container *ngComponentOutlet="data.component$ | async">
-
-      </ng-container>
-  </div>
-  <div *ngIf="data.component$ == undefined">
-    {{data.dialogOptions?.content}}
-  </div> -->
 </div>
 <mat-dialog-actions *ngIf="data.actions">
   <button mat-button *ngFor="let action of data.actions" (click)="handleAction(action)">{{action.label}}</button>
 </mat-dialog-actions>
+</div>
+

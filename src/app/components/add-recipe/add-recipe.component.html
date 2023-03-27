@@ -1,6 +1,6 @@
-<form [formGroup] = "form" (ngSubmit)="onSubmit()">
-    <mat-form-field class="example-full-width">
-    <input matInput type="text" id="id" name="id" placeholder="id" formControlName="id" class="invisible">
+<form [formGroup] = "form" (ngSubmit)="onSubmit()" style="padding: 50px">
+    <mat-form-field class="example-full-width invisible">
+    <input matInput type="text" id="id" name="id" placeholder="id" formControlName="id">
     </mat-form-field>
     <mat-form-field class="example-full-width">
         <mat-label>Name:</mat-label>

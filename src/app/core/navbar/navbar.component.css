@@ -24,7 +24,16 @@
     opacity: 0.5;
 }
 
+.mobile-btn{
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
+
+  .mobile-btn{
+    display: block;
+  }
+
     .navbar{
         position: fixed;
         top: 0px;

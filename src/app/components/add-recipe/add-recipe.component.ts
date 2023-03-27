@@ -9,10 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Operation, GenericEditor } from 'src/app/model/generic-editor';
 import { Recipe } from 'src/app/model/recipes';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
+  imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule],
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css']
@@ -90,7 +91,10 @@ export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit 
 
   add(item: Recipe): void {
     this.recipesService.postRecipe(item).subscribe(
-      (res) => console.log(res)
+      (res) => {
+        console.log(res);
+        this.onOperationCompleted.emit(res);
+      }
    );
   }
 

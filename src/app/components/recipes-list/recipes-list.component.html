@@ -1,5 +1,8 @@
 <div class="recipes-list" *ngIf="recipes">
     <h1>Recipes List</h1>
+    <br>
+    <button mat-raised-button color="primary" (click)="addRecipe()">Aggiungi ricetta</button>
+    <br><br>
     <div class="recipe-list-header">
         <div>Name</div>
         <div>Category</div>
@@ -15,10 +18,9 @@
        <div>{{recipe.creationDate}}</div>
        <div>{{recipe.difficult}}</div>
        <div>
-        <a (click)="this.editRecipe(recipe)" class="delete-btn"><i class="fa fa-edit"></i></a>
-       </div>
-       <div>
-          <a (click)="this.openDeleteDialog(recipe.id)" class="delete-btn"><i class="fa fa-trash"></i></a>
+           <a (click)="this.editRecipe(recipe)" class="delete-btn"><i class="fa fa-edit"></i></a>
+           &nbsp;
+           <a (click)="this.openDeleteDialog(recipe.id)" class="delete-btn"><i class="fa fa-trash"></i></a>
        </div>
     </div>
 </div>

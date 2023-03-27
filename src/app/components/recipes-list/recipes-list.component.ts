@@ -34,7 +34,7 @@ export class RecipesListComponent implements OnInit {
       { label: 'Elimina', action: () => { return this.deleteItem(id) }, closeDialog: true }
     ];
 
-    const dialogRef = this.dialogsService.openDialog(undefined, { content: "Are you sure you want to delete this item?" }, actions);
+    const dialogRef = this.dialogsService.openSmallDialog('', undefined, { content: "Are you sure you want to delete this item?" }, actions);
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
@@ -43,10 +43,26 @@ export class RecipesListComponent implements OnInit {
     });
   }
 
+  addRecipe(){
+
+    const componentType = AddRecipeComponent;
+
+    const dialogRef = this.dialogsService.openBigDialog('Aggiungi Recipe', componentType);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        let results = this.recipes.filter(recipe => recipe.id != result.id);
+        this.recipes = [...results, result];
+      }
+    });
+
+
+  }
+
   editRecipe(recipe: Recipe) {
     const componentType = AddRecipeComponent;
 
-    const dialogRef = this.dialogsService.openDialog(componentType, recipe);
+    const dialogRef = this.dialogsService.openBigDialog('Modifica Recipe', componentType, recipe);
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){

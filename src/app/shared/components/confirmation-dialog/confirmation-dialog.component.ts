@@ -17,11 +17,12 @@ export class ConfirmationDialogComponent implements OnInit  {
   constructor(
     private dialog: MatDialogRef<ConfirmationDialogComponent>,
     private viewContainerRef: ViewContainerRef,
-    @Inject(MAT_DIALOG_DATA) public data: { componentType: Type<any>, value: any, actions?: DialogActions[] }
+    @Inject(MAT_DIALOG_DATA) public data: { title: string, componentType: Type<any>, value: any, actions?: DialogActions[] }
     )
   {
     this.componentType = data.componentType;
   }
+
 
   ngOnInit(): void {
     // Load and render the content component
@@ -31,7 +32,6 @@ export class ConfirmationDialogComponent implements OnInit  {
       componentRef.instance.value = this.data.value;
       componentRef.instance.fromDialog = true;
       componentRef.instance.onOperationCompleted.subscribe((res: any) => {
-        console.log(res);
         this.dialog.close(res);
       })
     }

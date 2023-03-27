@@ -1,5 +1,5 @@
 import { ComponentType } from "@angular/cdk/portal";
-import { MatDialogConfig } from "@angular/material/dialog";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 
 export interface DialogActions {
@@ -21,11 +21,16 @@ export interface DialogData<T> {
    dialogActions?: DialogActions[];
 }
 
-
-export class DialogConfig<T> extends MatDialogConfig{
-  constructor(componentType?: ComponentType<T>, value?: any, actions?: DialogActions[]){
+export class DialogConfig<T> extends MatDialogConfig {
+  constructor(title: string, componentType?: ComponentType<T>, value?: any, actions?: DialogActions[]){
     super();
+
+    this.panelClass = "custom-dialog-panel";
+
     this.data = {};
+
+    this.data.title = title;
+
     if(componentType){
        this.data.componentType = componentType;
     }
@@ -35,5 +40,21 @@ export class DialogConfig<T> extends MatDialogConfig{
     this.data.fromDialog = true;
 
     this.data.actions = actions;
+  }
+}
+
+export class BigDialog<T> extends DialogConfig<T> {
+  constructor(title: string, componentType?: ComponentType<T>, value?: any, actions?: DialogActions[]){
+    super(title, componentType, value, actions);
+    this.width = "800px";
+    this.height = "600px";
+  }
+}
+
+export class SmallDialog<T> extends DialogConfig<T> {
+  constructor(title: string, componentType?: ComponentType<T>, value?: any, actions?: DialogActions[]){
+    super(title, componentType, value, actions);
+    this.width = "380px";
+    this.height = "200px";
   }
 }
