@@ -1,0 +1,7 @@
+.star-rating-wrapper .star.clickable{
+   cursor: pointer;
+}
+
+.star-rating-wrapper .star .active{
+  color: yellow;
+}

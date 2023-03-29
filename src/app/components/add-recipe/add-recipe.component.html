@@ -24,10 +24,8 @@
     </mat-form-field>
     <span *ngIf="!form.controls['description'].valid">*La lunghezza deve essere massimo di 100 caratteri!</span>
     <br>
-    <mat-form-field class="example-full-width">
-      <mat-label>Difficulty:</mat-label>
-      <input matInput type="text" id="difficult" name="difficult" placeholder="Difficult" formControlName="difficult">
-    </mat-form-field>
+       <label>Difficulty:</label>
+      <app-star-rating [clickable]="true" [rating]="form.controls['difficulty'].value" (onStarClick)="form.controls['difficulty'].setValue($event)"></app-star-rating>
     <br>
     <button mat-raised-button color="primary">Send</button>
 </form>

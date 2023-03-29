@@ -10,10 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { Operation, GenericEditor } from 'src/app/model/generic-editor';
 import { Recipe } from 'src/app/model/recipes';
 import { MatButtonModule } from '@angular/material/button';
+import { StarRatingComponentModule } from 'src/app/shared/components/star-rating/star-rating.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule],
+  imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatButtonModule, StarRatingComponentModule],
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css']
@@ -39,7 +40,7 @@ export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit 
       name : new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
       description: new FormControl('', Validators.maxLength(100)),
-      difficult: new FormControl('')
+      difficulty: new FormControl('')
     });
 
     Object.keys(this.form.controls).forEach(
@@ -54,14 +55,14 @@ export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit 
   override ngOnInit(): void {
     super.ngOnInit();
     console.log(this.mode);
-     if(this.value){
+     if(this.value) {
 
       this.form = new FormGroup({
         id : new FormControl(this.value.id),
         name : new FormControl(this.value.name, Validators.required),
         category: new FormControl(this.value.category, Validators.required) ,
         description: new FormControl('', Validators.maxLength(100)),
-        difficult: new FormControl('')
+        difficulty: new FormControl(this.value.difficulty)
       });
 
      }

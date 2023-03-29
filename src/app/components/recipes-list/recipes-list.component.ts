@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { from, Observable, of } from 'rxjs';
 import { DialogActions } from 'src/app/model/dialog-data';
 import { DialogsService } from 'src/app/services/dialogs.service';
@@ -20,7 +21,8 @@ export class RecipesListComponent implements OnInit {
   private editRecipe$
   = from(import('../../../app/components/add-recipe/add-recipe.component').then(component => component.AddRecipeComponent));
 
-  constructor(private recipesService: RecipesService, private dialog: MatDialog, private dialogsService: DialogsService){
+  constructor(private recipesService: RecipesService,
+    private dialog: MatDialog, private dialogsService: DialogsService, private router: Router){
   }
 
   ngOnInit(): void {
@@ -78,6 +80,10 @@ export class RecipesListComponent implements OnInit {
 
   updateItem(recipe: Recipe): Observable<object> {
     return this.recipesService.updateRecipe(recipe);
+ }
+
+ goToDetails(recipe: Recipe){
+  this.router.navigate([`recipe/details/${recipe.id}`]);
  }
 
 

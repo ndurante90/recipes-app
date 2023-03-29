@@ -16,13 +16,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import { StarRatingComponentModule } from './shared/components/star-rating/star-rating.component';
+import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesListComponent,
     NavbarComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,6 +38,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    StarRatingComponentModule,
     RouterModule.forRoot(
       [
         {
@@ -44,6 +48,12 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angula
         {
           path: 'add',
           component: AddRecipeComponent
+        },
+        {
+          path: 'recipe',
+          children: [
+            { path: 'details/:id', component: RecipeDetailsComponent }
+          ]
         }
       ]
     )

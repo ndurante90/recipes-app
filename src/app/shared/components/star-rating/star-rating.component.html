@@ -1,0 +1,8 @@
+<div class="star-rating-wrapper">
+   <span [ngClass]="'star'+ (clickable  ? ' clickable' : '')"
+       *ngFor="let star of [].constructor(5); let i=index" (click)="setValue(i+1)">
+      <span [ngClass]="{ 'active': (i>=0 &&( !!rating && i < rating))}">
+         <i class="fa fa-star"></i>
+      </span>
+   </span>
+</div>

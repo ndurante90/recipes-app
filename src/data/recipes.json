@@ -6,7 +6,7 @@
       "name": "panino",
       "category": 0,
       "description": "sdfdsfdsf",
-      "difficult": ""
+      "difficulty": 1
     },
     {
       "creationDate": "2023-03-27T16:23:15.487Z",
@@ -14,7 +14,15 @@
       "name": "test22",
       "category": 0,
       "description": "",
-      "difficult": ""
+      "difficulty": 3
+    },
+    {
+      "creationDate": "2023-03-29T14:39:45.311Z",
+      "id": 4,
+      "name": "Ricetta",
+      "category": 0,
+      "description": "",
+      "difficulty": 2
     }
   ]
 }
