@@ -4,6 +4,7 @@ export type Recipe = {
    category?: string;
    description?: string;
    creationDate?: Date;
+   peopleNumber?: number;
    difficulty?: number;
    imagePath?: string;
 }

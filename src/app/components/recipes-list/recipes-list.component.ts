@@ -31,7 +31,8 @@ export class RecipesListComponent implements OnInit {
     );
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(event:any, id: string): void {
+    event.stopPropagation();
     const actions: DialogActions[] = [
       { label: 'Elimina', action: () => { return this.deleteItem(id) }, closeDialog: true }
     ];
@@ -61,7 +62,8 @@ export class RecipesListComponent implements OnInit {
 
   }
 
-  editRecipe(recipe: Recipe) {
+  editRecipe(event: any, recipe: Recipe) {
+    event.stopPropagation();
     const componentType = AddRecipeComponent;
 
     const dialogRef = this.dialogsService.openBigDialog('Modifica Recipe', componentType, recipe);

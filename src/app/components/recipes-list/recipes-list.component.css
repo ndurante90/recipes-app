@@ -19,7 +19,7 @@
 .recipes-list > div > div{
     flex: 1;
 }
-
+/*
 .recipes-list > div > div:nth-child(3){
     flex: 2;
-}
+}*/

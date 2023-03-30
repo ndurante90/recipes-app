@@ -24,6 +24,12 @@ body{
 {
     flex: 1;
     height: inherit;
+    padding: 40px;
+}
+
+.mat-mdc-dialog-surface.mdc-dialog__surface{
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .delete-btn{
