@@ -11,6 +11,7 @@ import { Operation, GenericEditor } from 'src/app/model/generic-editor';
 import { Recipe } from 'src/app/model/recipes';
 import { MatButtonModule } from '@angular/material/button';
 import { StarRatingComponentModule } from 'src/app/shared/components/star-rating/star-rating.component';
+import { RecipesListComponent } from '../recipes-list/recipes-list.component';
 
 @Component({
   standalone: true,
@@ -26,51 +27,69 @@ export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit 
   //class and I have the same input "value"
   //@Input() value: Recipe | undefined;
 
-  form: FormGroup;
+  form: FormGroup = new FormGroup({});
   categories: RecipeCategory[] | undefined;
   formSubmitted: boolean = false;
 
   constructor(private recipesService: RecipesService, private recipeCategoryService: RecipeCategoryService) {
 
     super();
-    this.categories = this.recipeCategoryService.getRecipeCategories();
 
-    this.form = new FormGroup({
+    this.categories = this.recipeCategoryService.categories;
+
+  /*  this.form = new FormGroup({
       id: new FormControl(''),
-      name : new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
       category: new FormControl('', Validators.required),
       description: new FormControl('', Validators.maxLength(100)),
-      difficulty: new FormControl('')
-    });
+      difficulty: new FormControl(''),
+      peopleNumber: new FormControl(''),
+      ingredients: new FormControl('')
+    });*/
 
-    Object.keys(this.form.controls).forEach(
+   /* Object.keys(this.form.controls).forEach(
       (key) => {
         this.form.controls[key].valueChanges.subscribe(
           (value) => console.log(value)
         )
       }
-    );
+    );*/
   }
 
   override ngOnInit(): void {
+
     super.ngOnInit();
-    console.log(this.mode);
-     if(this.value) {
 
-      this.form = new FormGroup({
-        id : new FormControl(this.value.id),
-        name : new FormControl(this.value.name, Validators.required),
-        category: new FormControl(this.value.category, Validators.required) ,
-        description: new FormControl('', Validators.maxLength(100)),
-        difficulty: new FormControl(this.value.difficulty)
-      });
+    this.setFormGroup();
 
-     }
   }
 
   get Name() { return this.form.get('name'); }
 
   get Category() { return this.form.get('category'); }
+
+  setFormGroup(){
+
+    this.form = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.maxLength(100)),
+      difficulty: new FormControl(''),
+      peopleNumber: new FormControl(''),
+      ingredients: new FormControl('')
+    });
+
+    if(this.value) {
+      this.value = this.value as Recipe;
+      Object.keys(this.form.controls).forEach(
+        (key) => {
+          this.form.controls[key].setValue(this.value?.[key as keyof Recipe]);
+        }
+      )
+    }
+
+  }
 
   onSubmit() {
     this.formSubmitted = true;

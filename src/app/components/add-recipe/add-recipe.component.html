@@ -1,31 +1,45 @@
 <form [formGroup] = "form" (ngSubmit)="onSubmit()">
-    <mat-form-field class="example-full-width invisible">
-    <input matInput type="text" id="id" name="id" placeholder="id" formControlName="id">
-    </mat-form-field>
+    <div class="content">
+      <div class="column-sx">
+        <mat-form-field class="example-full-width invisible">
+          <input matInput type="text" id="id" name="id" placeholder="id" formControlName="id">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-label>Name:</mat-label>
+              <input matInput type="text" id="name" name="name" placeholder="Name" formControlName="name">
+          </mat-form-field>
+          <span *ngIf="(formSubmitted || Name?.dirty) && Name?.invalid">*Campo richiesto</span>
+          <br>
+          <label>Difficulty:</label>
+             <app-star-rating [clickable]="true" [rating]="form.controls['difficulty'].value" (onStarClick)="form.controls['difficulty'].setValue($event)"></app-star-rating>
+           <br>
+           <mat-form-field class="example-full-width">
+              <mat-label>Ingredients:</mat-label>
+ <!-- pills list --> <input matInput type="text" id="name" name="name" placeholder="ingredients" formControlName="ingredients">
+            </mat-form-field>
+      </div>
+      <div class="column-dx">
+        <mat-form-field appearance="fill">
+          <mat-label>Categoria:</mat-label>
+          <mat-select id="category" name="category" formControlName="category" >
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+               {{category.description}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <span *ngIf="(formSubmitted || Category?.dirty) && Category?.invalid">*Campo richiesto</span>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>People Number:</mat-label>
+        <input matInput type="text" id="peopleNumber" name="peopleNumber" placeholder="peopleNumber" formControlName="peopleNumber">
+       </mat-form-field>
+      </div>
+    </div>
     <mat-form-field class="example-full-width">
-        <mat-label>Name:</mat-label>
-        <input matInput type="text" id="name" name="name" placeholder="Name" formControlName="name">
-    </mat-form-field>
-    <span *ngIf="(formSubmitted || Name?.dirty) && Name?.invalid">*Campo richiesto</span>
-    <br>
-    <mat-form-field appearance="fill">
-        <mat-label>Categoria:</mat-label>
-        <mat-select id="category" name="category" formControlName="category" >
-          <mat-option *ngFor="let category of categories" [value]="category.value">
-             {{category.description}}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
-    <span *ngIf="(formSubmitted || Category?.dirty) && Category?.invalid">*Campo richiesto</span>
-    <br>
-    <mat-form-field class="example-full-width">
-        <mat-label>Descrizione:</mat-label>
-        <textarea matInput id="description" name="description" placeholder="Enter text" formControlName="description" ></textarea>
-    </mat-form-field>
-    <span *ngIf="!form.controls['description'].valid">*La lunghezza deve essere massimo di 100 caratteri!</span>
-    <br>
-       <label>Difficulty:</label>
-      <app-star-rating [clickable]="true" [rating]="form.controls['difficulty'].value" (onStarClick)="form.controls['difficulty'].setValue($event)"></app-star-rating>
-    <br>
-    <button mat-raised-button color="primary">Send</button>
+      <mat-label>Descrizione:</mat-label>
+      <textarea matInput id="description" name="description" placeholder="Enter text" formControlName="description" ></textarea>
+  </mat-form-field>
+  <span *ngIf="!form.controls['description'].valid">*La lunghezza deve essere massimo di 100 caratteri!</span>
+  <br>
+  <button mat-raised-button color="primary">Send</button>
 </form>

@@ -12,7 +12,7 @@
     </div>
     <div class="recipe-row" *ngFor="let recipe of recipes" (click)="goToDetails(recipe)">
        <div>{{recipe.name}}</div>
-       <div>{{recipe.category}}</div>
+       <div>{{recipe.category | recipeCategoryName}}</div>
        <div>{{recipe.peopleNumber}}</div>
        <div>
           <app-star-rating [rating]="recipe.difficulty"></app-star-rating>

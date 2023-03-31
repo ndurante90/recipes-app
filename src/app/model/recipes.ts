@@ -6,5 +6,6 @@ export type Recipe = {
    creationDate?: Date;
    peopleNumber?: number;
    difficulty?: number;
+   ingredients?: any;
    imagePath?: string;
 }

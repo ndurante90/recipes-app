@@ -6,12 +6,16 @@ import RecipeCategory from '../model/recipe-category';
 })
 export class RecipeCategoryService {
 
-  constructor() { }
+  categories: RecipeCategory[] = [];
+
+  constructor() {
+    this.categories = this.getRecipeCategories();
+  }
 
   public getRecipeCategories(): RecipeCategory[] {
     return <RecipeCategory[]> [
-      { value: 0, description: 'Street Food' },
-      { value: 1, description: 'Breakfast' }
+      { id:"adadasd", value: 0, description: 'Street Food' },
+      { id: "sddadasd", value: 1, description: 'Breakfast' }
     ];
   }
 }

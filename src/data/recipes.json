@@ -3,26 +3,18 @@
     {
       "creationDate": "2023-03-22T10:03:24.737Z",
       "id": 1,
-      "name": "panino",
-      "category": 0,
-      "description": "",
-      "difficulty": 3
-    },
-    {
-      "creationDate": "2023-03-27T16:23:15.487Z",
-      "id": 3,
-      "name": "test22",
-      "category": 0,
-      "description": "",
-      "difficulty": 2
-    },
-    {
-      "creationDate": "2023-03-29T14:39:45.311Z",
-      "id": 4,
-      "name": "Ricetta",
-      "category": 0,
-      "description": "",
+      "name": "sandwich",
+      "category": "sddadasd",
+      "description": "123123",
       "difficulty": 4
+    },
+    {
+      "creationDate": "2023-03-31T14:16:23.699Z",
+      "id": 2,
+      "name": "PROVA",
+      "category": "sddadasd",
+      "description": "",
+      "difficulty": 5
     }
   ]
 }

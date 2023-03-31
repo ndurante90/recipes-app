@@ -1,5 +1,57 @@
 <ng-container *ngIf="recipe">
-  <button mat-raised-button color="primary">Modifica ricetta</button>
-  <button mat-raised-button color="warn">Elimina ricetta</button>
-   <pre>{{recipe | json}}</pre>
+  <button mat-raised-button color="primary" (click)="updateRecipe()">Modifica ricetta</button>
+  &nbsp;
+  <button mat-raised-button color="warn" (click)="deleteRecipe(recipe.id)">Elimina ricetta</button>
+
+   <mat-card>
+    <mat-card-content>
+      <div class="mat-card-content">
+        <div class="column-sx">
+          <span>
+            <label>Name</label>
+            <br>
+            {{recipe.name}}
+          </span>
+          <br><br>
+          <span>
+            <label>Difficulty</label>
+            <br>
+            {{recipe.difficulty}}
+          </span>
+          <br><br>
+          <span>
+            <label>Ingredients list</label>
+            <br>
+            {{recipe.description}}
+          </span>
+          <br><br>
+          <span>
+            <label>Description</label>
+            <br>
+            {{recipe.description}}
+          </span>
+        </div>
+        <div class="column-dx">
+          <span>
+            <label>Category</label>
+            <br>
+            {{recipe.category | recipeCategoryName}}
+          </span>
+          <br><br>
+          <span>
+            <label>Creation Date</label>
+            <br>
+            {{recipe.creationDate | date}}
+          </span>
+          <br><br>
+          <span>
+            <label>People Number</label>
+            <br>
+            {{recipe.peopleNumber}}
+          </span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <pre>{{recipe | json}}</pre>
 </ng-container>

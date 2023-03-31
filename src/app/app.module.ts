@@ -18,6 +18,11 @@ import { ConfirmationDialogComponent } from './shared/components/confirmation-di
 import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { StarRatingComponentModule } from './shared/components/star-rating/star-rating.component';
 import { RecipeDetailsComponent } from './components/recipe-details/recipe-details.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { RecipeCategoryNamePipe } from './shared/pipes/recipe-category-name.pipe';
+import { RecipeCategoryService } from './services/recipe-category.service';
+import { DraggableDirective } from './shared/directives/draggable.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,9 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     RecipesListComponent,
     NavbarComponent,
     ConfirmationDialogComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    RecipeCategoryNamePipe,
+    DraggableDirective
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,8 +40,10 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
     CommonModule,
     HttpClientModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
@@ -58,7 +67,7 @@ import { RecipeDetailsComponent } from './components/recipe-details/recipe-detai
       ]
     )
   ],
-  providers: [],
+  providers: [ RecipeCategoryService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

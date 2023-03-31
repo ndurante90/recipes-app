@@ -48,6 +48,15 @@ body{
   justify-content: center !important;
 }
 
+.mat-card-content, .content{
+  display: flex;
+}
+
+.mat-card-content > div, .content > div{
+  flex: 1;
+}
+
+
 
 
 @media screen and (max-width: 768px) {
