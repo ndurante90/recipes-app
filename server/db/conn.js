@@ -1,16 +1,10 @@
-const MongoClient = require("mongodb");
+const { MongoClient } = require('mongodb');
+const connectionString  = process.env.ATLAS_URI || "";
 
-const connectionString = process.env.ATLAS_URI || "";
+module.exports = async function (){
 
-const client = new MongoClient(connectionString);
-
-let conn;
-try {
-  conn = await client.connect();
-} catch(e) {
-  console.error(e);
+    const mongoClient = await new MongoClient(connectionString);
+    await mongoClient.connect();
+    return mongoClient;
+    
 }
-
-let db = conn.db("recipes-db");
-
-export default db;
