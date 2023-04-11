@@ -2,19 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Recipe } from '../model/recipes';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipesService {
 
-  baseUrl: string = 'http://localhost:3000/recipes';
+  baseUrl: string = environment.apiUrl;
 
   constructor(private httpService: HttpClient) {
   }
 
   public getRecipes(): Observable<Recipe[]> {
-    return this.httpService.get<Recipe[]>(this.baseUrl);
+    return this.httpService.get<Recipe[]>(this.baseUrl+"/recipes");
   }
 
   public getRecipeDetails(id: number): Observable<Recipe>{

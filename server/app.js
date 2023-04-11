@@ -1,4 +1,5 @@
 // Load environment variables
+const cors=require('cors');
 const enviroment = require("./loadEnvironment.js");
 const getMongoClient = require("./db/conn.js");
 
@@ -9,6 +10,7 @@ let db;
 
 const express = require('express');
 const app = express();
+app.use(cors()); 
 
 
 app.get('/', (req, res) => {
@@ -24,15 +26,15 @@ app.get('/recipe/:id',async  (req,res) => {
 
 })
 
-app.get('/recipes/list', async (req, res) => {
+app.get('/recipes/', async (req, res) => {
 
   const collection = db.collection("recipes").find();
   const results = collection;
   const arr = await results.toArray();
 
-  arr.forEach((res) => console.log(res))
+  arr.forEach((res) => console.log(res));
 
-  res.send('OK');
+  res.json(arr); 
 })
 
 app.listen(PORT, async () => {
