@@ -1,0 +1,27 @@
+[
+{
+    "creationDate": "2023-03-22T10:03:24.737Z",
+    "id": 1,
+    "name": "sandwich",
+    "category": "sddadasd",
+    "description": "123123",
+    "difficulty": 5
+},
+{
+    "creationDate": "2023-04-22T10:03:24.737Z",
+    "id": 1,
+    "name": "Pizza",
+    "category": "Pasto completo",
+    "description": "123123",
+    "difficulty": 1
+},
+{
+    "creationDate": "2023-04-22T10:03:24.737Z",
+    "id": 4,
+    "name": "Pswerwa",
+    "category": "Pasto completo",
+    "description": "123123",
+    "difficulty": 1
+}
+]
+  

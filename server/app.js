@@ -3,6 +3,7 @@ const cors=require('cors');
 const enviroment = require("./loadEnvironment.js");
 const getMongoClient = require("./db/conn.js");
 
+const seedDatabase = require("./db/seed.js");
 
 const PORT = process.env.PORT || 5050;
 
@@ -11,7 +12,6 @@ let db;
 const express = require('express');
 const app = express();
 app.use(cors()); 
-
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -38,6 +38,12 @@ app.get('/recipes/', async (req, res) => {
 })
 
 app.listen(PORT, async () => {
+  
+  // Seed Database
+  await seedDatabase();
+
+  //Connect to MongoDB
   db = (await getMongoClient()).db("recipes-db");
+
   console.log(`Example app listening on port ${PORT}`)
 })
