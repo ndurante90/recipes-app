@@ -12,6 +12,7 @@ import { Recipe } from 'src/app/model/recipes';
 import { MatButtonModule } from '@angular/material/button';
 import { StarRatingComponentModule } from 'src/app/shared/components/star-rating/star-rating.component';
 import { RecipesListComponent } from '../recipes-list/recipes-list.component';
+import { IngredientsService } from 'src/app/services/ingredients/ingredients.service';
 
 @Component({
   standalone: true,
@@ -31,9 +32,16 @@ export class AddRecipeComponent extends GenericEditor<Recipe> implements OnInit 
   categories: RecipeCategory[] | undefined;
   formSubmitted: boolean = false;
 
-  constructor(private recipesService: RecipesService, private recipeCategoryService: RecipeCategoryService) {
+  constructor(private recipesService: RecipesService,
+              private recipeCategoryService: RecipeCategoryService,
+              private ingredientsService: IngredientsService
+              ) {
 
     super();
+
+    this.ingredientsService.getIngredients().subscribe(
+      (res) => console.log(res)
+    );
 
     this.categories = this.recipeCategoryService.categories;
 
