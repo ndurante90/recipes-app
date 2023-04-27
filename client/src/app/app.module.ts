@@ -12,6 +12,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from  '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule} from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
@@ -23,6 +24,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { RecipeCategoryNamePipe } from './shared/pipes/recipe-category-name.pipe';
 import { RecipeCategoryService } from './services/recipe-category.service';
 import { DraggableDirective } from './shared/directives/draggable.directive';
+import { TestingContainerComponent } from './core/testing-container/testing-container.component';
+import { IngredientsSelectorComponent } from './shared/components/ingredients-selector/ingredients-selector.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -32,13 +36,16 @@ import { DraggableDirective } from './shared/directives/draggable.directive';
     ConfirmationDialogComponent,
     RecipeDetailsComponent,
     RecipeCategoryNamePipe,
-    DraggableDirective
+    DraggableDirective,
+    TestingContainerComponent,
+    IngredientsSelectorComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
     HttpClientModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -48,6 +55,7 @@ import { DraggableDirective } from './shared/directives/draggable.directive';
     MatSelectModule,
     ReactiveFormsModule,
     StarRatingComponentModule,
+    MatChipsModule,
     RouterModule.forRoot(
       [
         {
@@ -57,6 +65,10 @@ import { DraggableDirective } from './shared/directives/draggable.directive';
         {
           path: 'add',
           component: AddRecipeComponent
+        },
+        {
+          path: 'testing',
+          component: TestingContainerComponent
         },
         {
           path: 'recipe',

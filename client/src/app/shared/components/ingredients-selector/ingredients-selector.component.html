@@ -1,0 +1,12 @@
+<div class="pill-list">
+  <div class="pill" *ngFor="let pill of pills; let i = index">
+    {{ pill.name }}
+    <button type="button" (click)="removePill(i)">x</button>
+  </div>
+  <input type="text" [matAutocomplete]="auto" (input)="suggestions = getSuggestions($event)" (keydown.enter)="addPill($event)" />
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let suggestion of suggestions | async" (click)="addPill(suggestion)">
+      {{ suggestion }}
+    </mat-option>
+  </mat-autocomplete>
+</div>
